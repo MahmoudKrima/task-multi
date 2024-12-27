@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'validation_error' => 'Validation error',
+    'register_successfully' => 'Your account has been created successfully',
+    'unauthorized' => 'Unauthorized',
+    'unauthenticated' => 'Unauthenticated',
+    'not_found' => 'No data found',
+    'missing_data' => 'Missing data',
+    'server_error' => 'Server error',
+    'not_allowed_method' => 'Method not allowed',
+    'not_found_route' => 'Route not found',
+    'this_action_is_unauthorized' => 'You do not have permission for this action',
+    'credentials_invalid' => 'Invalid credentials',
+    'success_logout' => 'Logged out successfully',
+    'blocked_or_not_completed' => 'This user is blocked',
+    'message_sent_successfully' => 'Message sent successfully',
+    'n/a' => 'Not available',
+    'lang_changed' => 'Language changed successfully',
+    'otp_send_successfully' => 'The verification code has been sent to your phone number successfully',
+    'invalid_otp' => 'Invalid verification code',
+    'otp_success_complete' => 'Verification successful, please complete the steps to reset your password',
+    'password_changed_successfully' => 'Password changed successfully',
+    'created_successfully' => 'Added successfully',
+    'updated_successfully' => 'Updated successfully',
+    'deleted_successfully' => 'Deleted successfully',
+    'Account Deleted' => 'Account deleted',
+];
