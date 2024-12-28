@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Models\Admin;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ForgetPasswordAdminMail;
 use App\Services\Admin\Auth\AuthService;
 use App\Http\Requests\Admin\Auth\LoginRequest;
 use App\Http\Requests\Admin\Auth\ResetPasswordRequest;
 use App\Http\Requests\Admin\Auth\ForgetPasswordRequest;
-use App\Http\Requests\Admin\Auth\ResetPasswordLinkCheckRequest;
 
 class AuthController extends Controller
 {

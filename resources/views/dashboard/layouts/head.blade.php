@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ app('settings')['app_name_' . app()->getLocale()] }} | @yield('title') </title>
     <link rel="icon" type="image/x-icon" href="{{ displayImage(app('settings')['fav_icon']) }}" />
-    <link href="{{ asset('assets_' . getAssetLang()) }}/assets/css/loader.css" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('assets_' . getAssetLang()) }}/assets/js/loader.js"></script>
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/loader.js"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
 
     @if (app()->getLocale() == 'ar')
@@ -21,10 +21,10 @@
         <!-------End fonts ---->
     @endif
 
-    <link href="{{ asset('assets_' . getAssetLang()) }}/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/bootstrap/css/bootstrap.min.css" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('assets_' . getAssetLang()) }}/assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('vendor/toastr/build/toastr.min.css') }}">
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ tenant_asset('vendor/toastr/build/toastr.min.css') }}">
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->

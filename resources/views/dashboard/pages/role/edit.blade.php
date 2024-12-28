@@ -13,10 +13,10 @@
 @endpush
 @push('css')
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin/assets_' . getAssetLang()) }}/plugins/dropify/dropify.min.css">
-    <link href="{{ asset('admin/assets_' . getAssetLang()) }}/assets/css/users/account-setting.css" rel="stylesheet"
+        href="{{ tenant_asset('admin/assets_' . getAssetLang()) }}/plugins/dropify/dropify.min.css">
+    <link href="{{ tenant_asset('admin/assets_' . getAssetLang()) }}/assets/css/users/account-setting.css" rel="stylesheet"
         type="text/css" />
-    <link rel="stylesheet" href="{{ asset('admin/css/styleRoles.css') }}">
+    <link rel="stylesheet" href="{{ tenant_asset('admin/css/styleRoles.css') }}">
 @endpush
 @section('content')
     <div class="layout-px-spacing">
@@ -124,8 +124,8 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('admin/assets_' . getAssetLang()) }}/plugins/dropify/dropify.min.js"></script>
-    <script src="{{ asset('admin/assets_' . getAssetLang()) }}/plugins/blockui/jquery.blockUI.min.js"></script>
-    <script src="{{ asset('admin/assets_' . getAssetLang()) }}/assets/js/users/account-settings.js"></script>
-    <script src="{{ asset('admin/js/selectAll.js') }}"></script>
+    <script src="{{ tenant_asset('admin/assets_' . getAssetLang()) }}/plugins/dropify/dropify.min.js"></script>
+    <script src="{{ tenant_asset('admin/assets_' . getAssetLang()) }}/plugins/blockui/jquery.blockUI.min.js"></script>
+    <script src="{{ tenant_asset('admin/assets_' . getAssetLang()) }}/assets/js/users/account-settings.js"></script>
+    <script src="{{ tenant_asset('admin/js/selectAll.js') }}"></script>
 @endpush

@@ -35,7 +35,7 @@
             <li class="nav-item dropdown language-dropdown">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('assets_' . getAssetLang()) }}/assets/img/{{ app()->getLocale() }}.png"
+                    <img src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/img/{{ app()->getLocale() }}.png"
                         class="flag-width" alt="flag">
                 </a>
                 <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
@@ -45,7 +45,7 @@
                         @endif
                         <a class="dropdown-item d-flex"
                             href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"><img
-                                src="{{ asset('assets_' . getAssetLang()) }}/assets/img/{{ $localeCode }}.png"
+                                src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/img/{{ $localeCode }}.png"
                                 class="flag-width" alt="flag">
 
                             <span class="align-self-center">&nbsp; {{ $properties['native'] }}</span></a>
@@ -72,7 +72,7 @@
                                 <div class="media">
                                     <div class="user-img">
                                         <img class="usr-img rounded-circle"
-                                            src="{{ asset('assets_en') }}/assets/img/90x90.jpg" alt="profile">
+                                            src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg" alt="profile">
                                     </div>
                                     <div class="media-body">
                                         <div class="">
@@ -90,7 +90,7 @@
                                 <div class="media">
                                     <div class="user-img">
                                         <img class="usr-img rounded-circle"
-                                            src="{{ asset('assets_en') }}/assets/img/90x90.jpg" alt="profile">
+                                            src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg" alt="profile">
                                     </div>
                                     <div class="media-body">
                                         <div class="">
@@ -108,7 +108,7 @@
                                 <div class="media">
                                     <div class="user-img">
                                         <img class="usr-img rounded-circle"
-                                            src="{{ asset('assets_en') }}/assets/img/90x90.jpg" alt="profile">
+                                            src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg" alt="profile">
                                     </div>
                                     <div class="media-body">
                                         <div class="">

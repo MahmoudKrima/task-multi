@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Tenant;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AdminSeeder extends Seeder
@@ -13,6 +15,7 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
+        $tenant=Tenant::first();
         $admin = Admin::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
@@ -20,7 +23,12 @@ class AdminSeeder extends Seeder
             'password' => '123456789',
             'image' => 'defaults/admin.jpg',
             'status' => 'active',
+            'tenant_id'=>$tenant->id,
         ]);
-        $admin->assignRole('administrator');
+        $role = Role::where('name', 'admin')
+        ->where('tenant_id', $tenant->id)
+        ->where('guard_name', 'admin')
+        ->first();
+        $admin->assignRole($role);
     }
 }

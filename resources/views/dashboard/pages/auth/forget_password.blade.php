@@ -9,16 +9,16 @@
     <link rel="icon" type="image/x-icon" href="{{ displayImage(app('settings')['fav_icon']) }}" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="{{ asset('assets_' . getAssetLang()) }}/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/bootstrap/css/bootstrap.min.css" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('assets_' . getAssetLang()) }}/assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets_' . getAssetLang()) }}/assets/css/authentication/form-2.css" rel="stylesheet"
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/authentication/form-2.css" rel="stylesheet"
         type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets_' . getAssetLang()) }}/assets/css/forms/theme-checkbox-radio.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets_' . getAssetLang()) }}/assets/css/forms/switches.css">
-    <link rel="stylesheet" href="{{ asset('vendor/toastr/build/toastr.min.css') }}">
+        href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/forms/theme-checkbox-radio.css">
+    <link rel="stylesheet" type="text/css" href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/forms/switches.css">
+    <link rel="stylesheet" href="{{ tenant_asset('vendor/toastr/build/toastr.min.css') }}">
 
 </head>
 
@@ -71,14 +71,14 @@
 
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="{{ asset('assets_' . getAssetLang()) }}/assets/js/libs/jquery-3.1.1.min.js"></script>
-    <script src="{{ asset('assets_' . getAssetLang()) }}/bootstrap/js/popper.min.js"></script>
-    <script src="{{ asset('assets_' . getAssetLang()) }}/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/bootstrap/js/popper.min.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-    <script src="{{ asset('assets_' . getAssetLang()) }}/assets/js/authentication/form-2.js"></script>
-    <script src="{{ asset('assets_' . getAssetLang()) }}/assets/js/authentication/form-2.js"></script>
-    <script src="{{ asset('vendor/toastr/build/toastr.min.js') }}"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/authentication/form-2.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/authentication/form-2.js"></script>
+    <script src="{{ tenant_asset('vendor/toastr/build/toastr.min.js') }}"></script>
 
     <script>
         toastr.options = {

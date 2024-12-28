@@ -14,21 +14,21 @@ class ActiveAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-
-        if (!Auth::guard("admin")->check()) {
-            return redirect()
-                ->to(route('auth.loginForm'));
-        } elseif (Auth::guard("admin")->check() && Auth::guard("admin")->user()->status->value != 'active') {
-            Auth::guard("admin")
-                ->logout();
-            return redirect()
-                ->to(route('auth.loginForm'));
-        } elseif (!Auth::guard('admin')->user()) {
-            return redirect()
-                ->to(route('auth.loginForm'));
+        if (!Auth::guard('admin')->check()) {
+            return redirect()->to(route('auth.loginForm'));
         }
+
+        $admin = Auth::guard('admin')->user();
+        if ($admin->status->value !== 'active') {
+            Auth::guard('admin')->logout();
+            return redirect()->to(route('auth.loginForm'));
+        }
+        if ($admin->tenant_id !== tenant('id')) {
+            return redirect()->to(route('auth.loginForm'));
+        }
+
         return $next($request);
     }
 }

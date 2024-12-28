@@ -23,7 +23,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', Rule::exists('admins', 'email')->where('status', 'active')],
+            'email' => ['required', 'email', Rule::exists('admins', 'email')->where('tenant_id',tenant('id'))->where('status', 'active')],
             'password' => ['required', 'string']
         ];
     }

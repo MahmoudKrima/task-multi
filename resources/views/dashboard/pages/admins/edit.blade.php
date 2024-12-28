@@ -1,8 +1,8 @@
 @extends('dashboard.layouts.app')
 @section('title', __('admin.update'))
 @push('css')
-    <link href="{{ asset('assets_' . getAssetLang()) }}/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets_' . getAssetLang()) }}/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet"
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet"
         type="text/css" />
 @endpush
 @push('breadcrumb')
@@ -113,8 +113,8 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('assets_' . getAssetLang()) }}/assets/js/scrollspyNav.js"></script>
-    <script src="{{ asset('assets_' . getAssetLang()) }}/plugins/file-upload/file-upload-with-preview.min.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/scrollspyNav.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/plugins/file-upload/file-upload-with-preview.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var favIconUpload = new FileUploadWithPreview('image', {

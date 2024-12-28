@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Storage;
 if (!function_exists('displayImage')) {
     function displayImage($object)
     {
-        if (Storage::exists('public/' . $object)) {
+        if (Storage::exists('public/tenancy/assets' . $object)) {
             return url(asset('storage/' . $object));
         }
-        return url(asset($object));
+        return url(tenant_asset($object));
     }
 }
 

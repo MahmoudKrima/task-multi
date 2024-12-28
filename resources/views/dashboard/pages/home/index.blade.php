@@ -1,8 +1,8 @@
 @extends('dashboard.layouts.app')
 @section('title', __('admin.dashboard'))
 @push('css')
-    <link href="{{ asset('assets_' . getAssetLang()) }}/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets_' . getAssetLang()) }}/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
     <style>
         .action-btn-size {
             width: 32px;
@@ -561,7 +561,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content customer-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="avatar">Andy King
                                             </div>
                                         </td>
@@ -583,7 +583,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content customer-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="avatar">Irene
                                                 Collins
                                             </div>
@@ -606,7 +606,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content customer-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="avatar">Laurie Fox
                                             </div>
                                         </td>
@@ -627,7 +627,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content customer-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="avatar">Luke Ivory
                                             </div>
                                         </td>
@@ -649,7 +649,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content customer-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="avatar">Ryan
                                                 Collins
                                             </div>
@@ -671,7 +671,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content customer-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg" alt="avatar">Nia
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg" alt="avatar">Nia
                                                 Hillyer
                                             </div>
                                         </td>
@@ -692,7 +692,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content customer-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="avatar">Sonia Shaw
                                             </div>
                                         </td>
@@ -750,7 +750,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content product-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="product">Speakers
                                             </div>
                                         </td>
@@ -772,7 +772,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content product-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="product">Sunglasses
                                             </div>
                                         </td>
@@ -794,7 +794,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content product-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="product">Watch
                                             </div>
                                         </td>
@@ -816,7 +816,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content product-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="product">Laptop
                                             </div>
                                         </td>
@@ -838,7 +838,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content product-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="product">Camera
                                             </div>
                                         </td>
@@ -861,7 +861,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content product-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="product">Shoes
                                             </div>
                                         </td>
@@ -883,7 +883,7 @@
                                     <tr>
                                         <td>
                                             <div class="td-content product-name"><img
-                                                    src="{{ asset('assets_en') }}/assets/img/90x90.jpg"
+                                                    src="{{ tenant_asset('assets_en') }}/assets/img/90x90.jpg"
                                                     alt="product">Headphone
                                             </div>
                                         </td>
@@ -912,7 +912,7 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('assets_' . getAssetLang()) }}/plugins/apex/apexcharts.min.js"></script>
-    <script src="{{ asset('assets_' . getAssetLang()) }}/assets/js/dashboard/dash_1.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/plugins/apex/apexcharts.min.js"></script>
+    <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/dashboard/dash_1.js"></script>
 @endpush
 {{-- @apexchartsScripts --}}

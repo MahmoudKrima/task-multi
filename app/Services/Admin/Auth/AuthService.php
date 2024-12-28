@@ -6,7 +6,6 @@ use App\Models\Admin;
 use App\Mail\ForgetPasswordMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ForgetPasswordAdminMail;
 
 class AuthService
 {

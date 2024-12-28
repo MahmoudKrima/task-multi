@@ -24,15 +24,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         $this->app->bind('settings', function () {
-            return Cache::rememberForever('settings', function () {
+            return Cache::store(config('cache.default'))->rememberForever('settings', function () {
                 return Setting::select('key', 'value')
                     ->get()
-                    ->map(function ($i) {
-                        return [
-                            $i->key => $i->value
-                        ];
+                    ->mapWithKeys(function ($i) {
+                        return [$i->key => $i->value];
                     })
-                    ->collapse()
                     ->toArray();
             });
         });

@@ -14,7 +14,9 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "mcamara/laravel-localization": "^2.0",
-        "spatie/laravel-permission": "^6.9"
+        "spatie/laravel-activitylog": "^4.9",
+        "spatie/laravel-permission": "^6.9",
+        "stancl/tenancy": "^3.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
