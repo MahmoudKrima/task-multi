@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\Setting;
+use App\Models\Task;
+use App\Models\TaskAttachment;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
@@ -23,6 +25,8 @@ class PermissionSeeder extends Seeder
         $permissions = [
             ...Admin::$permissions,
             ...Setting::$permissions,
+            ...Task::$permissions,
+            ...TaskAttachment::$permissions,
             ...$rolePermission,
         ];
 

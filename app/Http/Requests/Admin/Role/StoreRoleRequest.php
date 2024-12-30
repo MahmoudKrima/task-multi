@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Role;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRoleRequest extends FormRequest
@@ -22,7 +23,8 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:roles,name'],
+            'name' => ['required', 'string', 'max:255',  Rule::unique('roles', 'name')
+            ->where('tenant_id', tenant('id'))],
             'permission_id' => ['required', 'exists:permissions,id'],
             'permission_id.*' => ['required', 'exists:permissions,id'],
         ];

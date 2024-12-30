@@ -13,7 +13,7 @@ use Spatie\Activitylog\Models\Activity;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, HasRoles , BelongsToTenant;
+    use HasFactory, HasRoles, BelongsToTenant;
 
     protected $guarded = ['created_at', 'updated_at'];
 
@@ -32,6 +32,16 @@ class Admin extends Authenticatable
     public function activity()
     {
         return $this->morphMany(Activity::class, 'causer');
+    }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'user_tasks', 'user_id', 'task_id');
+    }
+
+    public function task_creator()
+    {
+        return $this->hasMany(Task::class, 'created_by', 'id');
     }
 
     protected static function booted()

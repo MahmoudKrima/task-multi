@@ -2,7 +2,8 @@
 <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/libs/jquery-3.1.1.min.js"></script>
 <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/bootstrap/js/popper.min.js"></script>
 <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/bootstrap/js/bootstrap.min.js"></script>
-<script src="{{ tenant_asset('assets_' . getAssetLang()) }}/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="{{ tenant_asset('assets_' . getAssetLang()) }}/plugins/perfect-scrollbar/perfect-scrollbar.min.js">
+</script>
 <script src="{{ tenant_asset('assets_' . getAssetLang()) }}/assets/js/app.js"></script>
 <script>
     $(document).ready(function() {
@@ -13,6 +14,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
 
 <script src="{{ tenant_asset('vendor/toastr/build/toastr.min.js') }}"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 <script>
     toastr.options = {
