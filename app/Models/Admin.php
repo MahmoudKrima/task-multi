@@ -6,14 +6,15 @@ use App\Enum\ActivationStatusEnum;
 use App\Models\Scopes\TenantScope;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Models\Activity;
+use Illuminate\Notifications\Notifiable;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Activitylog\Models\Activity;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, HasRoles, BelongsToTenant;
+    use HasFactory, HasRoles, BelongsToTenant,Notifiable;
 
     protected $guarded = ['created_at', 'updated_at'];
 

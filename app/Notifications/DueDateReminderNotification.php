@@ -11,14 +11,14 @@ class DueDateReminderNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $task;
+    protected $data;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($task)
+    public function __construct($data)
     {
-        $this->task =$task;
+        $this->data =$data;
     }
 
     /**
@@ -40,10 +40,9 @@ class DueDateReminderNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'task_id' => $this->task->id,
-            'task_title' => $this->task->title,
-            'due_date' => $this->task->due_date->toDateString(),
-            'message' => "Your task '{$this->task->title}' is due on {$this->task->due_date->toDateString()}."
+            'title' => $this->data['title'],
+            'due_date' => $this->data['due_date'],
+            'message' => $this->data['message'],
         ];
     }
 }

@@ -98,5 +98,10 @@ return [
     'assign'=>'Assign',
     'cant_update'=>"Can't Update",
     'cant_delete'=>"Can't Delete",
+    'View All Notifications' => 'View All Notifications',
+    'notifications' => 'Notifications',
+    'delete_all' => 'Delete All',
+    'notification' => 'Notification',
+    'no_notifications' => 'No Notifications',
 
 ];

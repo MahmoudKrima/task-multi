@@ -5,14 +5,15 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Home\HomeController;
+use App\Http\Controllers\Admin\Task\TaskController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use App\Http\Controllers\Admin\Profile\ProfileController;
-use App\Http\Controllers\Admin\Task\TaskController;
 use App\Http\Controllers\Admin\UserSettings\AdminController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Admin\WebSiteSettings\RoleController;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\Admin\WebSiteSettings\SettingsController;
+use App\Http\Controllers\Admin\Notification\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,7 +137,17 @@ Route::middleware([
                     ->middleware('has.permission:task.delete');
             });
 
-
+        Route::controller(NotificationController::class)
+            ->group(function () {
+                Route::get('get-notifications', 'index')
+                    ->name('notifications.get');
+                Route::get('/all-notifications', 'showAll')
+                    ->name('notifications.showAll');
+                Route::delete('/delete-all-notifications', 'deleteAll')
+                    ->name('notifications.deleteAll');
+                Route::delete('/delete-notification/{id}', 'delete')
+                    ->name('notifications.delete');
+            });
 
         Route::controller(RoleController::class)
             ->group(function () {

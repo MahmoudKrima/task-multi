@@ -16,6 +16,51 @@
 <script src="{{ tenant_asset('vendor/toastr/build/toastr.min.js') }}"></script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        App.init();
+
+        function updateNotifications() {
+            $.ajax({
+                url: '{{ route('admin.notifications.get') }}',
+                type: 'GET',
+                success: function(response) {
+
+                    const totalNotifications = response.total;
+                    const badge = $('.notification-dropdown .badge');
+                    badge.text(totalNotifications > 9 ? '+9' : totalNotifications);
+                    const notificationScroll = $('.notification-scroll');
+                    notificationScroll.empty();
+                    $('.notifciation-table').load(" .notifciation-table > * ")
+                    response.notifications.forEach(function(notification) {
+                        const data = notification.data;
+                        const notificationItem = `
+                            <div class="dropdown-item">
+                                <div class="media">
+                                    <!-- Customize icon based on notification type if needed -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-bell">
+                                    </svg>
+                                    <div class="media-body">
+                                        <div class="notification-para">
+                                            <span class="user-name">${data['title'] ?? 'User'}</span><br>
+                                            ${data['message'] ?? 'Notification message'}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                        notificationScroll.append(notificationItem);
+                    });
+                },
+                error: function(error) {
+                    console.error('Error fetching notifications:', error);
+                }
+            });
+        }
+        setInterval(updateNotifications, 5000);
+    });
+</script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 <script>
     toastr.options = {

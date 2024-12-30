@@ -42,8 +42,8 @@ class SendDueDateReminders extends Command
             foreach ($task->users as $user) {
                 $data = [
                     'user_id' => $user->id,
-                    'task_title' => $task->title,
-                    'due_date' => $task->due_date->toDateString(),
+                    'title' => $task->title,
+                    'due_date' => $task->due_date,
                     'message' => "Reminder: Your task '{$task->title}' is due tomorrow.",
                 ];
                 $user->notify(new DueDateReminderNotification($task));

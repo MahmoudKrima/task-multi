@@ -6,12 +6,14 @@ use App\Models\Task;
 use App\Models\Admin;
 use App\Traits\ImageTrait;
 use App\Filters\TitleFilter;
+use App\Events\TaskReminderEvent;
 use App\Filters\TaskStatusFilter;
 use Illuminate\Pipeline\Pipeline;
 use App\Filters\TaskCreatorFilter;
 use App\Filters\TaskDueDateFilter;
 use App\Filters\TaskPriorityFilter;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\DueDateReminderNotification;
 
 class TaskService
 {
@@ -77,8 +79,22 @@ class TaskService
         activity()
             ->causedBy($admin)
             ->log($admin->name . ' Created New Task : ' . $task->title);
+
         if (isset($data['users']) && auth('admin')->user()->hasAnyPermission(['task.assign'])) {
             $task->users()->sync($data['users']);
+            foreach ($data['users'] as $userId) {
+                $user = Admin::find($userId);
+                if ($user) {
+                    $data = [
+                        'user_id' => $user->id,
+                        'title' => "New Task",
+                        'due_date' => $task->due_date,
+                        'message' => "New Task Has Been Assigned To You By " . $admin->name,
+                    ];
+                    $user->notify(new DueDateReminderNotification($data));
+                    event(new TaskReminderEvent($data));
+                }
+            }
         } else {
             $task->users()->sync($admin->id);
         }
@@ -88,8 +104,20 @@ class TaskService
     {
         $data = $request->validated();
         $task->update($data);
+
         if (isset($data['users']) && auth('admin')->user()->hasAnyPermission(['task.assign'])) {
             $task->users()->sync($data['users']);
+        }
+
+        foreach ($task->users as $user) {
+            $data = [
+                'user_id' => $user->id,
+                'title' => "Task Updated",
+                'due_date' => $task->due_date,
+                'message' => "Your Task : " . $task->title . 'Has Been Updated By : ' . auth('admin')->user()->name,
+            ];
+            $user->notify(new DueDateReminderNotification($data));
+            event(new TaskReminderEvent($data));
         }
         $admin = auth('admin')->user();
         activity()
@@ -108,6 +136,20 @@ class TaskService
                 ->name('Update Status')
                 ->causedBy($admin)
                 ->log($admin->name . ' Updated Task Status : ' . $task->title . ' To Inprogress ');
+
+            foreach ($task->users as $userId) {
+                $user = Admin::find($userId);
+                if ($user) {
+                    $data = [
+                        'user_id' => $user->id,
+                        'title' => "Task Updated",
+                        'due_date' => $task->due_date,
+                        'message' => $admin->name . ' Updated Task Status : ' . $task->title . ' To Inprogress ',
+                    ];
+                    $user->notify(new DueDateReminderNotification($data));
+                    event(new TaskReminderEvent($data));
+                }
+            }
         } else {
             $task->update([
                 'status' => 'completed',
@@ -115,6 +157,19 @@ class TaskService
             activity()
                 ->causedBy($admin)
                 ->log($admin->name . ' Updated Task Status : ' . $task->title . ' To Completed ');
+            foreach ($task->users as $userId) {
+                $user = Admin::find($userId);
+                if ($user) {
+                    $data = [
+                        'user_id' => $user->id,
+                        'title' => "Task Updated",
+                        'due_date' => $task->due_date,
+                        'message' => $admin->name . ' Updated Task Status : ' . $task->title . ' To Completed ',
+                    ];
+                    $user->notify(new DueDateReminderNotification($data));
+                    event(new TaskReminderEvent($data));
+                }
+            }
         }
     }
 
@@ -127,7 +182,9 @@ class TaskService
             ->log($admin->name . ' Deleted Task : ' . $task->title);
         foreach ($task->attachments as $attachment) {
             Storage::disk('s3')->delete($attachment->attachment);
+            $attachment->delete();
         }
+        $task->users()->detach();
         $task->delete();
     }
 }

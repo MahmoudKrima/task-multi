@@ -98,5 +98,10 @@ return [
     'assign'=>'إسناد',
     'cant_update'=>'لا يمكن التعديل',
     'cant_delete'=>'لا يمكن الحذف',
+    'View All Notifications' => 'عرض الكل',
+    'notifications' => 'الاشعارات',
+    'delete_all' => 'حذف الكل',
+    'notification' => 'الاشعار',
+    'no_notifications' => 'لا يوجد اشعارات',
 
 ];
