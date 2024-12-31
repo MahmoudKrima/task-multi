@@ -107,5 +107,6 @@ return [
     'task_piriority'=>'أولوية المهمات',
     'user_tasks'=>'مهمات الموظفين',
     'latest_tasks'=>'أحدث المهمات',
+    'download_analytics'=>'تحميل ألاحصائيات',
 
 ];

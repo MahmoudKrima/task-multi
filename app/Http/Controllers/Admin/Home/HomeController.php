@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class HomeController extends Controller
 {
@@ -100,5 +101,36 @@ class HomeController extends Controller
                 ->get();
         }
         return view('dashboard.pages.home.index', compact('data'));
+    }
+
+    public function downloadPDF()
+    {
+        $data['total_tasks'] = Task::select('status', DB::raw('count(*) as count'))
+            ->groupBy('status')
+            ->get()
+            ->mapWithKeys(function ($item) {
+                return [$item->status->lang() => $item->count];
+            })
+            ->toArray();
+
+        $data['total_low'] = Task::where('priority', 'low')->count();
+        $data['total_medium'] = Task::where('priority', 'medium')->count();
+        $data['total_high'] = Task::where('priority', 'high')->count();
+
+        $data['chart2'] = [
+            'statusLabels' => [__('admin.low'), __('admin.medium'), __('admin.high')],
+            'statusCounts' => [$data['total_low'], $data['total_medium'], $data['total_high']]
+        ];
+
+        $data['adminsWithTaskCount'] = Admin::whereHas('tasks')
+            ->select('name', 'image')
+            ->withCount('tasks')
+            ->get();
+
+        $data['tasksDueDate'] = Task::select('title','due_date')
+        ->get();
+
+        $pdf = Pdf::loadView('dashboard.pages.analytics.analytics', compact('data'));
+        return $pdf->download('analytics.pdf');
     }
 }

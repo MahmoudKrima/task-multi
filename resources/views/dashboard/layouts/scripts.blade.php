@@ -123,6 +123,24 @@
         });
     });
 </script>
+<script>
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+        cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+        encrypted: true,
+    });
+
+    var channel = pusher.subscribe('private-tasks.{{ auth('admin')->id() }}');
+    channel.bind('App\\Events\\TaskReminderEvent', function(data) {
+        toastr.info(
+            `<strong>Title:</strong> ${data.title}<br><strong>Due Date:</strong> ${data.due_date}<br><strong>Message:</strong> ${data.message}`,
+            'Task Reminder'
+        );
+    });
+</script>
+
+
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 @stack('js')
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

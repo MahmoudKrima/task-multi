@@ -55,7 +55,7 @@ return [
         ],
 
         'subtitle' => [
-            'text' => 'undefined',
+            'text' => 'count',
             'align' => 'left',
         ],
 

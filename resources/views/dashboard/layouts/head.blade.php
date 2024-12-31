@@ -28,6 +28,8 @@
         type="text/css" />
     <link rel="stylesheet" href="{{ tenant_asset('vendor/toastr/build/toastr.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
 
     <!-- END GLOBAL MANDATORY STYLES -->
 

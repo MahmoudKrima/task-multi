@@ -22,6 +22,8 @@
     </ol>
 @endpush
 @section('content')
+    <a href="{{ route('admin.download.analytics') }}" class="m-3 btn btn-primary">{{__('admin.download_analytics')}}</a>
+
     <div class="layout-px-spacing">
         <div class="row layout-top-spacing">
             <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
@@ -80,12 +82,54 @@
                 </div>
             </div>
 
-            @if(!auth('admin')->user()->hasRole('employee'))
+            @if (!auth('admin')->user()->hasRole('employee'))
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                    <div class="widget widget-table-two">
+
+                        <div class="widget-heading">
+                            <h5 class="">{{ __('admin.user_tasks') }}</h5>
+                        </div>
+
+                        <div class="widget-content">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="th-content">{{ __('admin.name') }}</div>
+                                            </th>
+                                            <th>
+                                                <div class="th-content">{{ __('admin.tasks') }}</div>
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data['adminsWithTaskCount'] as $admin)
+                                            <tr>
+                                                <td>
+                                                    <div class="td-content customer-name"><img
+                                                            src="{{ displayImage($admin->image) }}"
+                                                            alt="avatar">{{ $admin->name }}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="td-content product-brand">{{ $admin->tasks_count }}</div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                <div class="widget widget-table-two">
+                <div class="widget widget-table-three">
 
                     <div class="widget-heading">
-                        <h5 class="">{{ __('admin.user_tasks') }}</h5>
+                        <h5 class="">{{ __('admin.latest_tasks') }}</h5>
                     </div>
 
                     <div class="widget-content">
@@ -94,25 +138,36 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <div class="th-content">{{ __('admin.name') }}</div>
+                                            <div class="th-content">{{ __('admin.title') }}</div>
                                         </th>
                                         <th>
-                                            <div class="th-content">{{ __('admin.tasks') }}</div>
+                                            <div class="th-content th-heading">{{ __('admin.priority') }}</div>
                                         </th>
-
+                                        <th>
+                                            <div class="th-content th-heading">{{ __('admin.status') }}</div>
+                                        </th>
+                                        <th>
+                                            <div class="th-content">{{ __('admin.due_date') }}</div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data['adminsWithTaskCount'] as $admin)
+                                    @foreach ($data['tasksDueDate'] as $task)
                                         <tr>
                                             <td>
-                                                <div class="td-content customer-name"><img
-                                                        src="{{ displayImage($admin->image) }}"
-                                                        alt="avatar">{{ $admin->name }}
+                                                <div class="td-content"><span class="pricing">{{ $task->title }}</span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="td-content product-brand">{{ $admin->tasks_count }}</div>
+                                                <div class="td-content"><span
+                                                        class="discount-pricing">{{ $task->priority->value }}</span></div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content">{{ $task->status->value }}</div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content"><span
+                                                        class="discount-pricing">{{ $task->due_date }}</span></div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -122,58 +177,8 @@
                     </div>
                 </div>
             </div>
-            @endif
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                <div class="widget widget-table-three">
-
-                    <div class="widget-heading">
-                        <h5 class="">{{__('admin.latest_tasks')}}</h5>
-                    </div>
-
-                    <div class="widget-content">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <div class="th-content">{{__('admin.title')}}</div>
-                                        </th>
-                                        <th>
-                                            <div class="th-content th-heading">{{__('admin.priority')}}</div>
-                                        </th>
-                                        <th>
-                                            <div class="th-content th-heading">{{__('admin.status')}}</div>
-                                        </th>
-                                        <th>
-                                            <div class="th-content">{{__('admin.due_date')}}</div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($data['tasksDueDate'] as $task)
-                                    <tr>
-                                        <td>
-                                            <div class="td-content"><span class="pricing">{{$task->title}}</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content"><span class="discount-pricing">{{$task->priority->value}}</span></div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content">{{$task->status->value}}</div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content"><span class="discount-pricing">{{$task->due_date}}</span></div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+
     </div>
 @endsection
 @push('js')

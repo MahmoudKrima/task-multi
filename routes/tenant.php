@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Home\HomeController;
 use App\Http\Controllers\Admin\Task\TaskController;
@@ -14,6 +15,8 @@ use App\Http\Controllers\Admin\WebSiteSettings\RoleController;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\Admin\WebSiteSettings\SettingsController;
 use App\Http\Controllers\Admin\Notification\NotificationController;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,8 @@ use App\Http\Controllers\Admin\Notification\NotificationController;
 | Feel free to customize them however you want. Good luck!
 |
 */
+
+
 
 Route::middleware([
     'web',
@@ -57,6 +62,15 @@ Route::middleware([
                 ->middleware('guest:admin');
         });
 
+
+    Route::post('/pusher/auth', function (Request $request) {
+        if (auth('admin')->check()) {
+            return Broadcast::auth($request);
+        }
+        return response()->json(['message' => 'Unauthorized'], 403);
+    })->middleware('web');
+
+
     Route::group([
         'prefix' => LaravelLocalization::setLocale() . '/admin',
         'as' => 'admin.',
@@ -68,8 +82,15 @@ Route::middleware([
             'localeViewPath',
         ]
     ], function () {
-        Route::get('/dashboard', [HomeController::class, 'index'])
-            ->name('dashboard.index');
+
+        Route::controller(HomeController::class)
+            ->group(function () {
+                Route::get('/dashboard', 'index')
+                    ->name('dashboard.index');
+                Route::get('/download-analytics', 'downloadPDF')
+                    ->name('download.analytics');
+            });
+
         Route::controller(ProfileController::class)
             ->group(function () {
                 Route::get('/update-profile', 'index')

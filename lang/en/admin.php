@@ -107,5 +107,6 @@ return [
     'task_piriority'=>'Tasks Priority',
     'user_tasks'=>'User Tasks',
     'latest_tasks'=>'Latest Tasks',
+    'download_analytics'=>'Download Analytics',
 
 ];
