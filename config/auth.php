@@ -44,7 +44,7 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'admin' => [
+        'api_admin' => [
             'driver' => 'sanctum',
             'provider' => 'admins',
         ],

@@ -2,7 +2,6 @@
 
 namespace App\Services\Api\User\Auth;
 
-use App\Models\User;
 use App\Models\Admin;
 use App\Traits\ImageTrait;
 use App\Support\APIResponse;
@@ -80,10 +79,7 @@ class UserAuthService
 
     function userLogout()
     {
-        $user = Auth::guard('admin')->user();
-        if ($user && $user->currentAccessToken()) {
-            $user->currentAccessToken()->delete();
-        }
+        Auth::guard('api_admin')->user()->tokens()->delete();
         return (new APIResponse())
             ->setMessage(__('api.success_logout'))
             ->setStatusOK()

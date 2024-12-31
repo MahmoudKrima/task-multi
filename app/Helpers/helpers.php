@@ -3,6 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
+
+if (!function_exists('api_model_set_paginate')) {
+
+    function api_model_set_paginate($model)
+    {
+        return [
+            'total'         => $model->total(),
+            'lastPage'      => $model->lastPage(),
+            'perPage'       => $model->perPage(),
+            'currentPage'   => $model->currentPage(),
+        ];
+    }
+}
+
 if (!function_exists('displayImage')) {
     function displayImage($object)
     {
@@ -40,7 +54,7 @@ if (!function_exists('getAssetLang')) {
 if (!function_exists('createSlug')) {
     function createSlug($string)
     {
-        $string=trim($string);
+        $string = trim($string);
         return str_replace(' ', '-', strtolower($string));
     }
 }

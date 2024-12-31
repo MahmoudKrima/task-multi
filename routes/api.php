@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\User\Auth\AuthController;
+use App\Http\Controllers\Api\User\Task\TaskController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -31,7 +32,11 @@ Route::middleware([
                     Route::post('/register', 'register');
                     Route::post('/login', 'login');
                     Route::post('/logout', 'logout')
-                        ->middleware('auth:admin');
+                        ->middleware('auth:api_admin');
+                });
+
+                Route::middleware('auth:api_admin')->group(function () {
+                    Route::resource('tasks', TaskController::class);
                 });
         });
 });
