@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User\Task;
 use App\Support\APIResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\User\Task\StoreTaskRequest;
 use App\Http\Resources\Api\Task\TaskResource;
 use App\Services\Api\User\Task\TaskService;
 
@@ -22,12 +23,9 @@ class TaskController extends Controller
             ->build();
     }
 
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        return (new APIResponse())
-            ->setData(['all_orders' => new UserOrdersResource()])
-            ->setStatusOK()
-            ->build();
+        return $this->taskService->store($request);
     }
 
     public function show($id) {}
