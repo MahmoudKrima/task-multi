@@ -108,5 +108,9 @@ return [
     'user_tasks'=>'مهمات الموظفين',
     'latest_tasks'=>'أحدث المهمات',
     'download_analytics'=>'تحميل ألاحصائيات',
+    'activity_logs'=>'سجلات النشاط',
+    'date'=>'التاريخ',
+    'causer'=>'المستخدم',
+    'subject'=>'النشاط',
 
 ];

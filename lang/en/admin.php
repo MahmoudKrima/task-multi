@@ -108,5 +108,9 @@ return [
     'user_tasks'=>'User Tasks',
     'latest_tasks'=>'Latest Tasks',
     'download_analytics'=>'Download Analytics',
+    'activity_logs'=>'Activity Logs',
+    'date'=>'Date',
+    'causer'=>'Causer',
+    'subject'=>'Subject',
 
 ];

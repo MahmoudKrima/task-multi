@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
 use App\Enum\ActivationStatusEnum;
 use App\Models\Scopes\TenantScope;
 use Spatie\Permission\Traits\HasRoles;
@@ -14,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, HasRoles, BelongsToTenant,Notifiable;
+    use HasFactory, HasRoles, BelongsToTenant,Notifiable,HasApiTokens;
 
     protected $guarded = ['created_at', 'updated_at'];
 

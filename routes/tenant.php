@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\Admin\Auth\AuthController;
@@ -11,11 +12,11 @@ use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use App\Http\Controllers\Admin\Profile\ProfileController;
 use App\Http\Controllers\Admin\UserSettings\AdminController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Admin\Activity\ActivityLogController;
 use App\Http\Controllers\Admin\WebSiteSettings\RoleController;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\Admin\WebSiteSettings\SettingsController;
 use App\Http\Controllers\Admin\Notification\NotificationController;
-use Illuminate\Http\Request;
 
 
 /*
@@ -90,6 +91,11 @@ Route::middleware([
                 Route::get('/download-analytics', 'downloadPDF')
                     ->name('download.analytics');
             });
+        Route::get('/activity-logs', [ActivityLogController::class, 'index'])
+        ->name('activity-logs.index')
+        ->middleware('has.permission:activity_log.view');
+
+
 
         Route::controller(ProfileController::class)
             ->group(function () {

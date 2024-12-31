@@ -21,6 +21,9 @@ class PermissionSeeder extends Seeder
             'role.create',
             'role.update',
         ];
+        $activityPermission=[
+            'activity_log.view',
+        ];
 
         $permissions = [
             ...Admin::$permissions,
@@ -28,6 +31,7 @@ class PermissionSeeder extends Seeder
             ...Task::$permissions,
             ...TaskAttachment::$permissions,
             ...$rolePermission,
+            ...$activityPermission,
         ];
 
         foreach ($permissions as $permission) {
