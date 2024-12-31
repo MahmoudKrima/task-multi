@@ -103,5 +103,9 @@ return [
     'delete_all' => 'حذف الكل',
     'notification' => 'الاشعار',
     'no_notifications' => 'لا يوجد اشعارات',
+    'total_tasks'=>'إجمالي المهمات',
+    'task_piriority'=>'أولوية المهمات',
+    'user_tasks'=>'مهمات الموظفين',
+    'latest_tasks'=>'أحدث المهمات',
 
 ];

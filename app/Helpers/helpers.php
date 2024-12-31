@@ -40,6 +40,7 @@ if (!function_exists('getAssetLang')) {
 if (!function_exists('createSlug')) {
     function createSlug($string)
     {
+        $string=trim($string);
         return str_replace(' ', '-', strtolower($string));
     }
 }

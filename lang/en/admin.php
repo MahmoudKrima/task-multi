@@ -103,5 +103,9 @@ return [
     'delete_all' => 'Delete All',
     'notification' => 'Notification',
     'no_notifications' => 'No Notifications',
+    'total_tasks'=>'Total Tasks',
+    'task_piriority'=>'Tasks Priority',
+    'user_tasks'=>'User Tasks',
+    'latest_tasks'=>'Latest Tasks',
 
 ];

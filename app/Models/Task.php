@@ -53,7 +53,7 @@ class Task extends Model
     {
         $admin = auth('admin')->user();
 
-        if ($admin->hasRole('admin') || $admin->hasRole('manager')) {
+        if (!$admin->hasRole('employee')) {
             return $query->with('creator', 'users', 'attachments')
                 ->orderBy('id', 'desc');
         }

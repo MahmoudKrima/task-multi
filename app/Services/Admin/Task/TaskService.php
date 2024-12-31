@@ -133,22 +133,23 @@ class TaskService
                 'status' => 'inprogress',
             ]);
             activity()
-                ->name('Update Status')
                 ->causedBy($admin)
-                ->log($admin->name . ' Updated Task Status : ' . $task->title . ' To Inprogress ');
+                ->performedOn($task)
+                ->withProperties([
+                    'status' => 'Inprogress',
+                    'title' => $task->title,
+                ])
+                ->log($admin->name . ' updated the task status of "' . $task->title . '" to Inprogress.');
 
             foreach ($task->users as $userId) {
-                $user = Admin::find($userId);
-                if ($user) {
-                    $data = [
-                        'user_id' => $user->id,
-                        'title' => "Task Updated",
-                        'due_date' => $task->due_date,
-                        'message' => $admin->name . ' Updated Task Status : ' . $task->title . ' To Inprogress ',
-                    ];
-                    $user->notify(new DueDateReminderNotification($data));
-                    event(new TaskReminderEvent($data));
-                }
+                $data = [
+                    'user_id' => $userId->id,
+                    'title' => "Task Updated",
+                    'due_date' => $task->due_date,
+                    'message' => $admin->name . ' Updated Task Status : ' . $task->title . ' To Inprogress ',
+                ];
+                $userId->notify(new DueDateReminderNotification($data));
+                event(new TaskReminderEvent($data));
             }
         } else {
             $task->update([
@@ -156,19 +157,22 @@ class TaskService
             ]);
             activity()
                 ->causedBy($admin)
-                ->log($admin->name . ' Updated Task Status : ' . $task->title . ' To Completed ');
+                ->performedOn($task)
+                ->withProperties([
+                    'status' => 'Completed',
+                    'title' => $task->title,
+                ])
+                ->log($admin->name . ' updated the task status of "' . $task->title . '" to Completed.');
             foreach ($task->users as $userId) {
-                $user = Admin::find($userId);
-                if ($user) {
-                    $data = [
-                        'user_id' => $user->id,
-                        'title' => "Task Updated",
-                        'due_date' => $task->due_date,
-                        'message' => $admin->name . ' Updated Task Status : ' . $task->title . ' To Completed ',
-                    ];
-                    $user->notify(new DueDateReminderNotification($data));
-                    event(new TaskReminderEvent($data));
-                }
+
+                $data = [
+                    'user_id' => $userId->id,
+                    'title' => "Task Updated",
+                    'due_date' => $task->due_date,
+                    'message' => $admin->name . ' Updated Task Status : ' . $task->title . ' To Completed ',
+                ];
+                $userId->notify(new DueDateReminderNotification($data));
+                event(new TaskReminderEvent($data));
             }
         }
     }

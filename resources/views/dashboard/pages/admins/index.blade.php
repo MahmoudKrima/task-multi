@@ -122,6 +122,7 @@
                                         <th scope="col">{{ __('admin.email') }}</th>
                                         <th scope="col">{{ __('admin.phone') }}</th>
                                         <th scope="col">{{ __('admin.role') }}</th>
+                                        <th scope="col">{{ __('admin.tasks') }}</th>
                                         <th scope="col">{{ __('admin.status') }}</th>
                                         @if (auth('admin')->user()->hasAnyPermission(['admins.update', 'admins.delete']))
                                             <th class="text-center" scope="col">{{ trans('admin.actions') }}</th>
@@ -152,6 +153,7 @@
                                             <td>{{ $admin->email }}</td>
                                             <td>{{ $admin->phone }}</td>
                                             <td>{{ $admin->roles[0]->name ?? __('admin.n/a') }}</td>
+                                            <td>{{ $admin->tasks_count ?? __('admin.n/a') }}</td>
                                             <td>
                                                 @if (auth('admin')->user()->hasAnyPermission(['admins.update']))
                                                     <form method="POST"

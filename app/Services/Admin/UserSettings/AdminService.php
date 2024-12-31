@@ -23,6 +23,7 @@ class AdminService
     {
         return Admin::where('id', '!=', auth('admin')->id())
             ->with('roles')
+            ->withCount('tasks')
             ->orderBy('id', 'desc')
             ->paginate();
     }
@@ -46,6 +47,7 @@ class AdminService
             ])
             ->thenReturn()
             ->with('roles')
+            ->withCount('tasks')
             ->where('id', '!=', auth('admin')->id())
             ->orderBy('id', 'desc')
             ->paginate()
